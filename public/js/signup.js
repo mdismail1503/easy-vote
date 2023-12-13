@@ -1,5 +1,5 @@
 /* eslint-disable */
-const axios = require("axios");
+import axios from "axios";
 let role = "";
 
 function displayRadioValue() {
