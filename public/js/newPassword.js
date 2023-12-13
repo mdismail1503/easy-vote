@@ -4,7 +4,7 @@ const newPassword = async (password, confirmPassword) => {
   try {
     const result = await axios({
       method: "PATCH",
-      url: "https://easy-vote.onrender.com/api/v1/users/resPassword/:token",
+      url: "/api/v1/users/resPassword/:token",
       data: {
         password,
         confirmPassword,
