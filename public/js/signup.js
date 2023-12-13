@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+const axios = require("axios");
 let role = "";
 
 function displayRadioValue() {
@@ -35,7 +35,7 @@ const signup = async (
   try {
     const result = await axios({
       method: "POST",
-      url: "https://easy-vote.onrender.com/api/v1/users/signup",
+      url: "/api/v1/users/signup",
       data: {
         name: name,
         email: email,
