@@ -1,4 +1,5 @@
 {
+  "type":"module",
   "name": "votingsystem",
   "version": "1.0.0",
   "description": "This is my Voting system",
