@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    link(rel='stylesheet' href='/css/login-style.css')
+    link(rel='shortcut icon' type='image/png' href='/img/justice.png')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+
+
+    title Login Account
+  body
+    .pagewrap
+      form#form.form
+        h3.form__title PLEASE Log in
+        .container
+          input#username.container__input(type='text' name='email' value='' required='')
+          label#userLabel.container__label(for='username') Email
+        .container
+          input#pass.container__input(type='password' name='password' value='' required='')
+          label#passLabel.container__label(for='pass') Password
+          a.forgot-link#forgot-link(href='/forgotPassword') forgotpassword?
+        button#submit.form__submit(type='submit') Submit
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js')
+    script(src='/js/login.js')
+    

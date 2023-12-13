@@ -1,0 +1,275 @@
+extends base
+
+block append head
+    style.
+      .logo {
+      font-size: 24px;
+      }
+      ul {
+      list-style: none;
+      display: flex;
+      }
+      ul li {
+      margin: 0 15px;
+      }
+      ul li a {
+      text-decoration: none;
+      color: white;
+      }
+
+
+     * {box-sizing: border-box;}
+     .body {font-family: Verdana, sans-serif;}
+    
+
+     .slideshow-container {
+     max-width: 1550px;
+     position: relative;
+     margin-top: 0.5px;
+     }
+
+     .numbertext {
+     color: #f2f2f2;
+     font-size: 12px;
+     padding: 8px 12px;
+     position: absolute;
+     top: 0;
+     }
+
+     .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 2.5s ease;
+     }
+
+     .active {
+     background-color: #707171;
+     }
+
+     .fade {
+     animation-name: fade;
+     animation-duration: 2.5s;
+     }
+
+     @keyframes fade {
+     from {opacity: .4} 
+     to {opacity: 1}
+     }
+      .content, .events, .gallery, .contact {
+      padding: 50px 20px;
+      }
+      .news-item, .event-item {
+      margin-bottom: 30px;
+      }
+      .image-item img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      }
+      ::-webkit-scrollbar {
+      width: 0px; /* Remove scrollbar space */
+      background: transparent; /* Optional: just make scrollbar invisible */
+      }
+      .nav__el--logout {
+      margin-right: 0.8rem;
+      margin-top: 1rem;
+      }
+      .mySlides img{
+        height:13cm;
+      }
+      .welcome-container,.schemes-container{
+        font-family:sans-serif;
+        height:610px;
+        background-color:#F3FDE8;
+        display:flex;
+        align-items:center;
+        justify-content:space-around;
+        gap:115px;
+        margin-top:5px;
+      }
+      p{
+        font-size:20px;
+      }
+      .schemes-container{
+        background-color:white;
+      }
+      .welcome-image,.schemes-data{
+        width:610px;
+        height:350px;
+        padding-left:90px;
+        border-radius:20px 10px 10px 10px;
+      }
+      .welcome-data,.schemes-image{
+        margin-right:15%;
+        width:610px;
+      }
+      .schemes-image{
+        width:600px;
+        height:350px;
+        border-radius:20px 10px 10px 10px;
+      }
+      h2{
+        font-size:50px;
+      }
+      .schemes-container{
+        flex-direction:row-reverse;
+      }
+      .about-container{
+        font-family:sans-serif;
+        height:550px;
+        background-color:white;        
+      }
+      .about-us{
+        padding-left:90px; 
+        margin-top:50px;
+        display:inline-block;
+        margin-bottom:8px;
+      }
+      .summary-lines{
+        width:1300px;
+        padding-left:90px;
+        font-size:18px;
+        margin-bottom:5px;
+        margin-right:80px;
+        font-family:sans-serif;
+        font-weight:normal;
+        color:#444;
+      }
+      .scroll-fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .scroll-fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .welcome-image,.schemes-image{
+        border-right:solid 2px orangered;
+      }
+      .image-container {
+        position: relative;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #8d6e63b0;
+        opacity:scale(0.5)
+      }
+
+      .text-container {
+        font-family:sans-serif;
+        position: absolute;
+        top: 30%;
+        left: 27%;
+        transform: translate(-50%, -50%);
+        color: #fff0ff; /* Set text color */
+        text-align: center;
+      }
+
+      .line1,
+      .line2 {
+        margin: 0;
+        font-size:24px;
+      }
+      .line1{
+        font-weight:bold;
+        margin-bottom:17px;
+        font-size: 32px;
+      }
+      .phone-pay{ 
+      position:absolute;
+      top:12%;
+      left:110%; 
+      border-radius:1px; 
+      }
+      .scan{
+        position:absolute;
+        top:143%;
+        left:112%;
+      }
+      .scan2{
+        position:absolute;
+        top:143%;
+        left:117%;
+      }
+
+             
+
+block content
+  .scroll-container
+    div.body.scroll-fade-in
+      .slideshow-container
+      .mySlides.fade
+        .numbertext 1 / 3
+        img(src=src=`/img/headpics/${party.photo.split('.')[0]}1.jpg` alt='PARTY PHOTO' style='width:100%')
+      .mySlides.fade
+        .numbertext 2 / 3
+        img(src=src=`/img/headpics/${party.photo.split('.')[0]}2.jpg` alt='PARTY PHOTO' style='width:100%')
+      .mySlides.fade
+        .numbertext 3 / 3
+        img(src=src=`/img/headpics/${party.photo.split('.')[0]}3.jpg` alt='PARTY PHOTO' style='width:100%')
+      br
+      div(style='text-align:center')
+       span.dot
+       span.dot
+       span.dot
+  
+    .welcome-container.scroll-fade-in
+      img.welcome-image(src=`/img/arraypics/${party.photo.split('.')[0]}-1.jpg` alt='image')
+      .welcome-data.scroll-fade-in
+        h2.welcome=`Welcome to ${party.photo.split('.')[0].toUpperCase()} portal`
+        p=`Explore the various government schemes and services provided by ${party.name}. Stay updated with the latest news and initiatives taken by the ${party.candidateName}, the leader of ${party.name}.`
+    .schemes-container.scroll-fade-in
+      img.schemes-image(src=`/img/arraypics/${party.photo.split('.')[0]}-2.jpg` alt='image')
+      .schemes-data.scroll-fade-in
+        h2.schemes=`Government Benefits & Schemes`
+        p=`Get detailed information about the government schemes and services provided by the ${party.name}. Find out how these initiatives are benefiting the people of country.`
+    .welcome-container.scroll-fade-in
+      img.welcome-image(src=`/img/arraypics/${party.photo.split('.')[0]}-3.jpg` alt='image')
+      .welcome-data.scroll-fade-in
+        h2.welcome=`Candidate details`
+        p=`${party.candidateDetails}`
+    .about-container.scroll-fade-in
+      h2.about-us.scroll-fade-in About us 
+      each sum in party.summary
+        p.summary-lines.scroll-fade-in=sum
+    .image-container.scroll-fade-in   
+      img(src="/img/donation.jpg" height="260" width="100%")
+      .overlay 
+      .text-container.scroll-fade-in 
+        p.line1 Every contribution you make can make a difference. 
+        p.line2 Please contribute generously to our party.
+        img.phone-pay(src='/img/phonepay.jpg' height="100" width="100" alt='donation')
+        span.scan scan
+        span.scan2 here    
+
+    script.
+      document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll(".scroll-fade-in");
+      const observer = new IntersectionObserver(
+      (entries, observer) => {
+      entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+      }
+      });
+      },
+      { threshold: 0.5 }
+      );
+      elements.forEach((element) => {
+      observer.observe(element);
+      });
+      });
+
+//- img(src=`/img/headpics/${party.photo}` alt='PARTY PHOTO')

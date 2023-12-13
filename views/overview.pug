@@ -1,0 +1,64 @@
+extends base
+
+
+block content
+ .scroll-container
+    div.card-container.scroll-fade-in
+     each party in parties
+      .card.scroll-fade-in
+        .card-image-container.scroll-fade-in
+          img.card-image(src=`/img/parties/${party.photo}`, alt=`${party.name}`)
+          h2.card-name=`${party.name.toUpperCase()}`
+          a.vote-button(href=`parties/vote/${party.slug}` role="button") 
+           span(style="font-weight:bold;letter-spacing:4px") VOTE
+         
+        .card-content.scroll-fade-in
+          h3.card-age=`Candidate: ${party.candidateName}`
+          p.card-age=`Age: ${party.age}`
+          a.card-button(href=`/parties/${party.slug}` style="font-size: 13px;") PARTY DETAILS
+ script.
+    const hasVisited=document.cookie.includes('visitedBefore=true');
+    const hideAlert = () => {
+    const el = document.querySelector(".alert");
+    if (el) el.parentElement.removeChild(el);
+    };
+
+    const showAlert = (type, msg) => {
+    hideAlert();
+    const markup = `<div style="font-family:Lato" class="alert alert--${type} alert-modifi"><img class="alert-img" src="/img/justice.png" height="30" width="30" alt="logo"><div class="alert-msg">${msg}</div><button class="first-time-button" onclick="hideAlert()">OK</button></div>`;
+
+    document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
+
+     
+    };
+    if(!hasVisited){
+    document.cookie='visitedBefore=true; max-age='+ 3600 * 24 * 30;
+    showAlert("success", "Hello, Welcome to EasyVote 🎉<br>Please click on the image to vote !!");
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".scroll-fade-in");
+    const observer = new IntersectionObserver(
+    (entries, observer) => {
+    entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+    entry.target.classList.add("visible");
+    observer.unobserve(entry.target);
+    }
+    });
+    },
+    { threshold: 0.5 }
+    );
+    elements.forEach((element) => {
+    observer.observe(element);
+    });
+    });
+     
+//-  div.card-container
+//-   each party in parties
+//-    .card
+//-     img.card-image(src=`/img/parties/${party.photo}` alt=`${party.name}`)
+//-     .card-content
+//-      h2.card-name=`Contestant: ${party.candidateName}`
+//-      p.card-name=`Age: ${party.age}`
+//-      a.card-button(href=`#`) Details 
+         

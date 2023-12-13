@@ -1,0 +1,86 @@
+extends base
+
+block append head 
+  style.
+
+     table {
+    font-family:'Lato',sans-serif;
+     width:60%;
+     font-weight:600;
+     margin-top:50px;
+     margin-left:auto;
+     margin-right:auto;  
+     border-collapse: collapse;
+     border-spacing: 0;
+     margin-bottom: 110px;
+     background-color: white;
+     
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     }
+
+     thead {
+     background-color: #fda250;
+     color: white;
+     }
+
+     th, td {
+     padding: 11px;
+     text-align: left;
+     border-bottom: 1px solid #ddd;
+     color:#444;
+     }
+     th{
+          padding:25px;
+          font-size:25px;
+     }
+     .votes-count{
+          text-align:center;
+     }
+     .par-img{
+          height:41px;
+          width:39px;
+          border-radius:15px;
+          margin-right:20px;
+          margin-left:20px;
+          border:solid white 1px;
+     }
+     tbody tr:hover,.ccc:hover {
+       background-color: #99a9f0;
+       transform: scale(1.1);
+       transition: transform 0.3s ease; 
+       cursor:pointer;
+     }
+     .flex{
+          display:flex;
+     }
+     .content{
+          margin-top:auto;
+          margin-bottom:auto;
+     }
+
+     .total{      
+      padding-bottom:15px;
+      background-color:skyblue;
+      padding-left:170px;
+      font-size:20px;
+     }
+
+block content
+  table
+    thead.scroll-fade-in
+      tr
+        th Voter Name
+        th.votes-count  Email
+    tbody
+    - let sum=0;
+      each x in users
+        if x.role!=='admin'
+          tr.scroll-fade-in.ccc
+            td.flex
+              img.par-img(src=`/img/users/${x.photo}` alt='voter image')
+              .content=`${x.name}`
+            td.votes-count #{x.email}       
+            - sum=sum+1;    
+      tr.scroll-fade-in.ccc
+        td.total Total voters 
+        td.total #{sum}

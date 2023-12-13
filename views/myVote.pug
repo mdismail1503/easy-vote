@@ -1,0 +1,39 @@
+extends base
+
+block append head 
+ style.
+   .ismail{
+    margin-top:auto;
+    margin-bottom:auto;
+    padding:140px;
+    color:#444;
+   }
+   .vot{
+    color:#444;
+    font-weight:bold;
+    display:inline-block;
+   }
+   .vot::first-letter{
+    color:#edaf5f;
+   }
+   
+
+block content
+  if party
+   center
+     .ismail
+       h1 🎉You have voted for -&nbsp;
+         each p in party.name.split(' ')
+           span &nbsp;
+           .vot=p
+         span 🎉
+       .card
+         .card-image-container
+            img.card-image(src=`/img/parties/${party.photo}`, alt=`${party.name}`)
+            h2.card-name=`${party.name.toUpperCase()}`
+
+  else 
+    .ismail
+      center 
+
+       h1.not-voted You haven't voted yet!! 

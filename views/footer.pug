@@ -1,0 +1,37 @@
+.scroll-container
+  footer.footer.scroll-fade-in
+      div.footer__logo.scroll-fade-in
+          img(src='/img/justice.png' alt='Natour logo')
+
+      p.footer__copyright.scroll-fade-in &copy; by Ismail Ansari. All rights reserved
+      .connect-container
+        .connect Connect with us:
+        ul.footer__nav
+          li.scroll-fade-in
+            a(href='https://www.facebook.com/ismailansari.mohammed' target="_blank") 
+             img.social-media(src='/img/svg/facebook.svg' alt='fb logo' height='25' width='24')       
+          li.scroll-fade-in
+            a(href='https://www.instagram.com/ismart.ismail99/'  target="_blank") 
+             img.social-media(src='/img/svg/instagram.svg' alt='insta logo' height='24' width='24')
+          li.scroll-fade-in
+            a(href='https://twitter.com/d_ismartismail'  target="_blank") 
+             img.social-media(src='/img/svg/x.svg' alt='x logo' height='24' width='24' style='border-radius:7px')
+
+  script.
+      document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll(".scroll-fade-in");
+      const observer = new IntersectionObserver(
+      (entries, observer) => {
+      entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+      }
+      });
+      },
+      { threshold: 0.5 }
+      );
+      elements.forEach((element) => {
+      observer.observe(element);
+      });
+      });

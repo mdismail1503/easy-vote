@@ -1,0 +1,40 @@
+header.header 
+     nav.nav.nav--tours
+          a.nav__el(href='/') ALL PARTIES
+     div.header__logo
+          img(src='/img/justice.png' alt='voting logo')
+     nav.nav.nav--user 
+          if user
+           a.nav__el.nav__el--logout(href='/logout') LOG OUT 
+           a.nav__el#spanning(href='/me')
+            img.nav__user-img(src=`/img/users/${user.photo}` alt='Your photo')
+            span=user.name.split(' ')[0].toUpperCase()
+          else  
+           a.nav__el#nextButton LOG IN
+           a.nav__el.nav__el--cta#nextSignup(href='/signup' ) SIGN UP
+
+script.
+    // Get the button element by its IDs
+ const nextButton = document.getElementById('nextButton');
+ const nextSignup=document.getElementById('nextSignup');
+    // Function to handle button click
+ function handleButtonClick() {
+    // Set a delay of 1 second (1000 milliseconds) before navigating to the next page or URL
+ setTimeout(function () {
+    // Replace 'next-page.html' with the URL of the next page you want to navigate to
+ window.location.href = '/login';
+    }, 1000); // 1000 milliseconds = 1 second
+    }
+ function handleSignupClick() {
+    // Set a delay of 1 second (1000 milliseconds) before navigating to the next page or URL
+ setTimeout(function () {
+    // Replace 'next-page.html' with the URL of the next page you want to navigate to
+ window.location.href = '/signup';
+    }, 1000); // 1000 milliseconds = 1 second
+    }
+    // Add a click event listener to the button
+ if(nextButton!==null)   
+  nextButton.addEventListener('click', handleButtonClick);
+ if(nextSignup!==null) 
+  nextSignup.addEventListener('click',handleSignupClick);
+ 

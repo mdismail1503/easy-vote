@@ -1,0 +1,68 @@
+extends base
+
+block append head 
+    style.
+      .loader {
+      position: absolute;
+      top: 65%;
+      left: 40%;
+      margin-left: 10%;
+      transform: translate3d(-50%, -50%, 0);
+      }
+      .dot {
+      width: 24px;
+      height: 24px;
+      background: #aeb6e5;
+      border-radius: 50%;
+      display: inline-block;
+      animation: slide 1s infinite;
+      }
+      .dot:nth-child(1) {
+      animation-delay: 0.1s;
+      background-color: red(255, 0, 0, 0.5); /* You can add custom styles here */
+      }
+      .dot:nth-child(2) {
+      animation-delay: 0.2s;
+      background-color: red(255, 0, 0, 1.0); /* You can add custom styles here */
+      }
+      .dot:nth-child(3) {
+      animation-delay: 0.3s;
+      background-color: blue(255, 0, 0, 0.59);
+      }
+      .dot:nth-child(4) {
+      animation-delay: 0.4s;
+      background-color: violet(255, 0, 0, 2.0);
+      }
+      .dot:nth-child(5) {
+      animation-delay: 0.5s;
+      background-color: yellow(255, 0, 0, 2.5);}
+      @keyframes slide {
+      0% {
+      transform: scale(1);
+      }
+      50% {
+      opacity: 0.3;
+      transform: scale(2);
+      }
+      100% {
+      transform: scale(1);
+      }
+      }
+
+block content
+  h1(style='padding:250px;text-align:center;font-size:30px;color:#aeb6e9;font-family:Lato')=`${message.toUpperCase()}`
+  - if (!india)
+    .loader
+      .dot
+      .dot
+      .dot
+      .dot
+      .dot
+    script.
+     try {
+       setTimeout(() => {
+         window.location.href = '/thank-you';
+       }, 3000);
+     } catch (error) {
+       console.error(error);
+     }
