@@ -4,7 +4,7 @@ const login = async (email, password) => {
   try {
     const result = await axios({
       method: "POST",
-      url: "/api/v1/users/login",
+      url: "https://easy-vote.onrender.com/api/v1/users/login",
       data: {
         email: email,
         password: password,
@@ -103,7 +103,7 @@ const forgotPass = async (email) => {
   try {
     const result = await axios({
       method: "POST",
-      url: "/api/v1/users/forgotPassword",
+      url: "https://easy-vote.onrender.com/api/v1/users/forgotPassword",
       data: {
         email: email,
       },

@@ -35,7 +35,7 @@ const signup = async (
   try {
     const result = await axios({
       method: "POST",
-      url: "/api/v1/users/signup",
+      url: "https://easy-vote.onrender.com/api/v1/users/signup",
       data: {
         name: name,
         email: email,
