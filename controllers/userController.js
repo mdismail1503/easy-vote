@@ -2,7 +2,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 const multer = require("multer");
-const sharp = require("sharp");
+// const sharp = require("sharp");
+const Jimp = require("jimp");
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -42,11 +43,18 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
 
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
 
-  await sharp(req.file.buffer)
-    .resize(500, 500)
-    .toFormat("jpeg")
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/users/${req.file.filename}`);
+  // await sharp(req.file.buffer)
+  //   .resize(500, 500)
+  //   .toFormat("jpeg")
+  //   .jpeg({ quality: 90 })
+  //   .toFile(`public/img/users/${req.file.filename}`);
+  const image = await Jimp.read(req.file.buffer);
+
+  // Resize the image
+  await image.resize(500, 500);
+
+  // Convert to JPEG with quality 90
+  await image.quality(90).writeAsync(`public/img/users/${req.file.filename}`);
 
   next();
 });
