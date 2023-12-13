@@ -1,5 +1,4 @@
 /* eslint-disable */
-import axios from "axios";
 let role = "";
 
 function displayRadioValue() {
