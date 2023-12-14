@@ -3,6 +3,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-restricted-syntax */
+const jwt = require("jsonwebtoken");
+
 const Party = require("../models/partyModel");
 
 const catchAsync = require("../utils/catchAsync");
