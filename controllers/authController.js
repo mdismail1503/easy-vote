@@ -117,7 +117,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     //return res.redirect("/");
     return res.status(400).render("error", {
       title: "Un-authorized",
-      msg: "PLEASE LOGIN TO CONTINUE!",
+      msg: "PLEASE SIGNUP OR LOGIN TO CONTINUE!",
     });
   }
 
