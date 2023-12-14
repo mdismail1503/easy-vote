@@ -40,5 +40,6 @@ router.get(
 );
 router.post("/sign-up-complete", viewController.signupComplete);
 router.post("/login-complete", viewController.loginComplete);
+router.post("/new-password", viewController.newPassRender);
 
 module.exports = router;

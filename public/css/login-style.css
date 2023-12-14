@@ -189,3 +189,7 @@ input {
   font-size: 25px;
   font-weight: bold;
 }
+.form__submit:focus {
+  transform: translateY(3px);
+  transition: transform 0.5s ease;
+}

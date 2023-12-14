@@ -5,6 +5,7 @@
 /* eslint-disable no-restricted-syntax */
 const jwt = require("jsonwebtoken");
 
+const crypto = requre("crypto");
 const Party = require("../models/partyModel");
 
 const catchAsync = require("../utils/catchAsync");
@@ -266,6 +267,40 @@ exports.loginComplete = catchAsync(async (req, res, next) => {
     return next(new AppError(`Incorrect email or password`, 401));
   }
 
+  createSendToken(user, 200, res);
+  res.redirect("/");
+});
+
+exports.newPassRender = catchAsync(async (req, res, next) => {
+  // 1. get user based on token
+  // console.log(`req.params.token  ${req.params.token}`);
+  const hashedToken = crypto.createHash("sha256").update(tk).digest("hex");
+  // console.log(req.baseUrl);
+  // const hashedToken = crypto
+  //   .createHash("sha256")
+  //   .update(req.url.split(":").pop())
+  //   .digest("hex");
+
+  //console.log(`hashedToken  ${hashedToken}`);
+
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() }, // coz we gave a expire limit
+  });
+  //console.log(user);
+
+  // 2. if token has not expired, and there is user, set the new password
+  if (!user) {
+    return next(new AppError("Token is invalid or has expired", 400));
+  }
+  user.password = req.body.password;
+  user.confirmPassword = req.body.confirmPassword;
+
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+
+  await user.save();
+  //3. Log the user in, send JWT
   createSendToken(user, 200, res);
   res.redirect("/");
 });
