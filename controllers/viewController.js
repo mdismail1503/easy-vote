@@ -219,6 +219,7 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signupComplete = catchAsync(async (req, res, next) => {
   try {
+    console.log(req.body);
     const adminConfirmation = process.env.ADMIN_SECRET;
     if (
       req.body.secretForAdmin !== adminConfirmation &&
