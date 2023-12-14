@@ -1,7 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-restricted-syntax */
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const Party = require("../models/partyModel");
 
