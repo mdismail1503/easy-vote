@@ -69,7 +69,7 @@ app.use("/api/v1/parties", partyRouter);
 app.use("/api/v1/users", userRouter);
 
 app.all("*", (req, res, next) => {
-  next(new AppError(`Please Login to continue!`, 404));
+  next(new AppError(`Please Login or Signup to continue!`, 404));
 });
 
 app.use(globalErrorHandler);

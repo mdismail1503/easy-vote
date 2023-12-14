@@ -38,4 +38,5 @@ router.get(
   authController.restrictToAdmin,
   viewController.getUserList
 );
+router.post("/sign-up-complete", viewController.signupComplete);
 module.exports = router;

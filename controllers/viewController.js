@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-restricted-syntax */
@@ -180,4 +181,82 @@ exports.getUserList = catchAsync(async (req, res, next) => {
     titile: "EasyVote | Users List",
     users: users,
   });
+});
+
+const signToken = (userId) =>
+  jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+  //console.log(token);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  };
+  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+  res.cookie("jwt", token, cookieOptions);
+
+  user.password = undefined; // so that password doesn't appear on response
+};
+
+const hideAlert = () => {
+  const el = document.querySelector(".alert");
+  if (el) el.parentElement.removeChild(el);
+};
+
+const showAlert = (type, msg) => {
+  hideAlert();
+  const markup = `<div class="alert alert--${type}">${msg}</div>`;
+
+  document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
+
+  window.setTimeout(hideAlert, 4000);
+};
+
+exports.signupComplete = catchAsync(async (req, res, next) => {
+  try {
+    const adminConfirmation = process.env.ADMIN_SECRET;
+    if (
+      req.body.secretForAdmin !== adminConfirmation &&
+      req.body.role === "admin"
+    )
+      return next(new AppError("Please enter valid secret! ", 400));
+
+    const { email, password, confirmPassword } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (user)
+      return next(new AppError("User with email id already exists !", 400));
+
+    if (password.length < 8)
+      return next(
+        new AppError("Password must be at least 8 characters long.", 400)
+      );
+
+    if (confirmPassword !== password)
+      return next(
+        new AppError("Passwords do not match. Please try again!", 400)
+      );
+
+    const newUser = await User.create(req.body);
+    const url = `${req.protocol}://${req.get("host")}/me`;
+    await new Email(newUser, url).sendWelcome();
+    //console.log(newUser);
+    createSendToken(newUser, 201, res);
+    showAlert("success", "Signup successful!");
+    window.setTimeout(() => {
+      location.assign("/");
+    }, 1500);
+  } catch (err) {
+    // res.status(500).json({
+    //   status: "fail",
+    //   data: err,
+    // });
+    showAlert("error", err.response.data.message);
+  }
 });

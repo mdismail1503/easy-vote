@@ -17,7 +17,7 @@ html(lang='en')
    .form-container
     h1  SIGN UP FORM
     br
-    form.signup-form
+    form.signup-form(action='/sign-up-complete' method='post')
      label(for='name') Name:
      input#name(type='text' name='name' required='')
      br
