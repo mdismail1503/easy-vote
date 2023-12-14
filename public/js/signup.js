@@ -10,70 +10,70 @@ function displayRadioValue() {
   }
 }
 
-const hideAlert = () => {
-  const el = document.querySelector(".alert");
-  if (el) el.parentElement.removeChild(el);
-};
+// const hideAlert = () => {
+//   const el = document.querySelector(".alert");
+//   if (el) el.parentElement.removeChild(el);
+// };
 
-const showAlert = (type, msg) => {
-  hideAlert();
-  const markup = `<div class="alert alert--${type}">${msg}</div>`;
+// const showAlert = (type, msg) => {
+//   hideAlert();
+//   const markup = `<div class="alert alert--${type}">${msg}</div>`;
 
-  document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
+//   document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
 
-  window.setTimeout(hideAlert, 4000);
-};
+//   window.setTimeout(hideAlert, 4000);
+// };
 
-document.querySelector(".signup-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
-  const secretForAdmin = document.getElementById("textField").value;
+// document.querySelector(".signup-form").addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const name = document.getElementById("name").value;
+//   const email = document.getElementById("email").value;
+//   const password = document.getElementById("password").value;
+//   const confirmPassword = document.getElementById("confirm-password").value;
+//   const secretForAdmin = document.getElementById("textField").value;
 
-  //if (secretForAdmin == null || secretForAdmin == "") secretForAdmin = "";
+//   //if (secretForAdmin == null || secretForAdmin == "") secretForAdmin = "";
 
-  signup(name, email, password, confirmPassword, secretForAdmin, role);
-});
+//   signup(name, email, password, confirmPassword, secretForAdmin, role);
+// });
 
-const signup = async (
-  name,
-  email,
-  password,
-  confirmPassword,
-  secretForAdmin,
-  role
-) => {
-  try {
-    const result = await axios({
-      method: "POST",
-      url: "/api/v1/users/signup",
-      data: {
-        name: name,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-        secretForAdmin: secretForAdmin,
-        role: role,
-      },
-    });
+// const signup = async (
+//   name,
+//   email,
+//   password,
+//   confirmPassword,
+//   secretForAdmin,
+//   role
+// ) => {
+//   try {
+//     const result = await axios({
+//       method: "POST",
+//       url: "/api/v1/users/signup",
+//       data: {
+//         name: name,
+//         email: email,
+//         password: password,
+//         confirmPassword: confirmPassword,
+//         secretForAdmin: secretForAdmin,
+//         role: role,
+//       },
+//     });
 
-    if (result.data.status === "success") {
-      showAlert("success", "Signup successful!");
-      window.setTimeout(() => {
-        location.assign("/");
-      }, 1500);
-    }
-    return {
-      tokenInfo: data,
-      timestamp: new Date().getTime(),
-    };
-  } catch (err) {
-    console.log(err);
-    showAlert("error", err.response.data.message);
-  }
-};
+//     if (result.data.status === "success") {
+//       showAlert("success", "Signup successful!");
+//       window.setTimeout(() => {
+//         location.assign("/");
+//       }, 1500);
+//     }
+//     return {
+//       tokenInfo: data,
+//       timestamp: new Date().getTime(),
+//     };
+//   } catch (err) {
+//     console.log(err);
+//     showAlert("error", err.response.data.message);
+//   }
+// };
 
 function toggleTextField(userType) {
   var textFieldContainer = document.getElementById("textFieldContainer");
