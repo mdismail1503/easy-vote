@@ -3,12 +3,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-restricted-syntax */
-const express = require("express");
-const bodyParser = require("body-parser");
-
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-
 const Party = require("../models/partyModel");
 
 const catchAsync = require("../utils/catchAsync");
