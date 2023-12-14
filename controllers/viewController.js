@@ -252,7 +252,7 @@ exports.signupComplete = catchAsync(async (req, res, next) => {
     // window.setTimeout(() => {
     //   location.assign("/");
     // }, 1500);
-    res.status(200).render("/overview");
+    res.status(200).render("overview");
   } catch (err) {
     // res.status(500).json({
     //   status: "fail",
