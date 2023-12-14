@@ -203,20 +203,6 @@ const createSendToken = (user, statusCode, res) => {
   user.password = undefined; // so that password doesn't appear on response
 };
 
-// const hideAlert = () => {
-//   const el = document.querySelector(".alert");
-//   if (el) el.parentElement.removeChild(el);
-// };
-
-// const showAlert = (type, msg) => {
-//   hideAlert();
-//   const markup = `<div class="alert alert--${type}">${msg}</div>`;
-
-//   document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
-
-//   window.setTimeout(hideAlert, 4000);
-// };
-
 exports.signupComplete = catchAsync(async (req, res, next) => {
   try {
     console.log(req.body);
@@ -266,4 +252,20 @@ exports.signupComplete = catchAsync(async (req, res, next) => {
     // showAlert("error", err.message);🙌
     console.log(err);
   }
+});
+
+exports.loginComplete = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return next(new AppError("Please provide email and Password!", 400));
+  }
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user || !(await user.correctPassword(password, user.password))) {
+    return next(new AppError(`Incorrect email or password`, 401));
+  }
+
+  createSendToken(user, 200, res);
+  res.redirect("/");
 });

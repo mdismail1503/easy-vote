@@ -39,4 +39,6 @@ router.get(
   viewController.getUserList
 );
 router.post("/sign-up-complete", viewController.signupComplete);
+router.post("/login-complete", viewController.loginComplete);
+
 module.exports = router;

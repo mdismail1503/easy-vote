@@ -6,10 +6,10 @@ html
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
 
 
-    title Login Account
+    title EASY VOTE | Login Account
   body
     .pagewrap
-      form#form.form
+      form#form.form(action='/login-complete' method='post')
         h3.form__title PLEASE Log in
         .container
           input#username.container__input(type='text' name='email' value='' required='')
@@ -20,6 +20,5 @@ html
           a.forgot-link#forgot-link(href='/forgotPassword') forgotpassword?
         button#submit.form__submit(type='submit') Submit
 
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js')
     script(src='/js/login.js')
     

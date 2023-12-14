@@ -1,37 +1,37 @@
 /*eslint-disable*/
 
-const login = async (email, password) => {
-  try {
-    const result = await axios({
-      method: "POST",
-      url: "/api/v1/users/login",
-      data: {
-        email: email,
-        password: password,
-      },
-    });
+// const login = async (email, password) => {
+//   try {
+//     const result = await axios({
+//       method: "POST",
+//       url: "/api/v1/users/login",
+//       data: {
+//         email: email,
+//         password: password,
+//       },
+//     });
 
-    if (result.data.status === "success") {
-      showAlert("success", "Logged in successfully!");
-      window.setTimeout(() => {
-        location.assign("/");
-      }, 1500);
-    }
-  } catch (err) {
-    console.log(err);
-    showAlert("error", err.response.data.message);
-  }
-};
+//     if (result.data.status === "success") {
+//       showAlert("success", "Logged in successfully!");
+//       window.setTimeout(() => {
+//         location.assign("/");
+//       }, 1500);
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     showAlert("error", err.response.data.message);
+//   }
+// };
 
-document.addEventListener("DOMContentLoaded", function () {
-  var form = document.getElementById("form");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const email = document.getElementById("username").value;
-    const password = document.getElementById("pass").value;
-    login(email, password);
-  });
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   var form = document.getElementById("form");
+//   form.addEventListener("submit", function (e) {
+//     e.preventDefault();
+//     const email = document.getElementById("username").value;
+//     const password = document.getElementById("pass").value;
+//     login(email, password);
+//   });
+// });
 /** ALERTS */
 
 const hideAlert = () => {
@@ -84,12 +84,12 @@ function clicked() {
   });
 }
 
-document.getElementById("submit").addEventListener("click", function (event) {
-  clicked();
-  if (!validate()) {
-    event.preventDefault(); // Prevent form submission if validation fails
-  }
-});
+// document.getElementById("submit").addEventListener("click", function (event) {
+//   clicked();
+//   if (!validate()) {
+//     event.preventDefault(); // Prevent form submission if validation fails
+//   }
+// });
 
 document
   .getElementById("forgot-link")
