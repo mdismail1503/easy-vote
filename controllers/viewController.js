@@ -257,6 +257,6 @@ exports.signupComplete = catchAsync(async (req, res, next) => {
     //   status: "fail",
     //   data: err,
     // });
-    showAlert("error", err.response.data.message);
+    showAlert("error", err.message);
   }
 });
