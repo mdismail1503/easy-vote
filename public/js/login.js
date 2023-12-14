@@ -103,7 +103,7 @@ const forgotPass = async (email) => {
   try {
     const result = await axios({
       method: "POST",
-      url: "https://easy-vote.onrender.com/api/v1/users/forgotPassword",
+      url: "/api/v1/users/forgotPassword",
       data: {
         email: email,
       },
