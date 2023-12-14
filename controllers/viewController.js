@@ -203,19 +203,19 @@ const createSendToken = (user, statusCode, res) => {
   user.password = undefined; // so that password doesn't appear on response
 };
 
-const hideAlert = () => {
-  const el = document.querySelector(".alert");
-  if (el) el.parentElement.removeChild(el);
-};
+// const hideAlert = () => {
+//   const el = document.querySelector(".alert");
+//   if (el) el.parentElement.removeChild(el);
+// };
 
-const showAlert = (type, msg) => {
-  hideAlert();
-  const markup = `<div class="alert alert--${type}">${msg}</div>`;
+// const showAlert = (type, msg) => {
+//   hideAlert();
+//   const markup = `<div class="alert alert--${type}">${msg}</div>`;
 
-  document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
+//   document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
 
-  window.setTimeout(hideAlert, 4000);
-};
+//   window.setTimeout(hideAlert, 4000);
+// };
 
 exports.signupComplete = catchAsync(async (req, res, next) => {
   try {
@@ -248,15 +248,17 @@ exports.signupComplete = catchAsync(async (req, res, next) => {
     await new Email(newUser, url).sendWelcome();
     //console.log(newUser);
     createSendToken(newUser, 201, res);
-    showAlert("success", "Signup successful!");
-    window.setTimeout(() => {
-      location.assign("/");
-    }, 1500);
+    // showAlert("success", "Signup successful!");
+    // window.setTimeout(() => {
+    //   location.assign("/");
+    // }, 1500);
+    res.redirect("/");
   } catch (err) {
     // res.status(500).json({
     //   status: "fail",
     //   data: err,
     // });
-    showAlert("error", err.message);
+    // showAlert("error", err.message);🙌
+    console.log(err);
   }
 });
