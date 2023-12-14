@@ -10,6 +10,20 @@ function displayRadioValue() {
   }
 }
 
+const hideAlert = () => {
+  const el = document.querySelector(".alert");
+  if (el) el.parentElement.removeChild(el);
+};
+
+const showAlert = (type, msg) => {
+  hideAlert();
+  const markup = `<div class="alert alert--${type}">${msg}</div>`;
+
+  document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
+
+  window.setTimeout(hideAlert, 4000);
+};
+
 document.querySelector(".signup-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const name = document.getElementById("name").value;
@@ -102,17 +116,3 @@ function toggleTextField(userType) {
 // if (document.getElementById('r1').checked) {
 //   rate_value = document.getElementById('r1').value;
 // }
-
-const hideAlert = () => {
-  const el = document.querySelector(".alert");
-  if (el) el.parentElement.removeChild(el);
-};
-
-const showAlert = (type, msg) => {
-  hideAlert();
-  const markup = `<div class="alert alert--${type}">${msg}</div>`;
-
-  document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
-
-  window.setTimeout(hideAlert, 4000);
-};
