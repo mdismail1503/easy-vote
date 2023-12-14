@@ -37,6 +37,44 @@ document.querySelector(".signup-form").addEventListener("submit", (e) => {
   signup(name, email, password, confirmPassword, secretForAdmin, role);
 });
 
+// const signup = async (
+//   name,
+//   email,
+//   password,
+//   confirmPassword,
+//   secretForAdmin,
+//   role
+// ) => {
+//   try {
+//     const result = await axios({
+//       method: "POST",
+//       url: "/api/v1/users/signup",
+//       data: {
+//         name: name,
+//         email: email,
+//         password: password,
+//         confirmPassword: confirmPassword,
+//         secretForAdmin: secretForAdmin,
+//         role: role,
+//       },
+//     });
+
+//     if (result.data.status === "success") {
+//       showAlert("success", "Signup successful!");
+//       window.setTimeout(() => {
+//         location.assign("/");
+//       }, 1500);
+//     }
+//     return {
+//       tokenInfo: data,
+//       timestamp: new Date().getTime(),
+//     };
+//   } catch (err) {
+//     console.log(err);
+//     showAlert("error", err.response.data.message);
+//   }
+// };
+
 const signup = async (
   name,
   email,
@@ -46,32 +84,37 @@ const signup = async (
   role
 ) => {
   try {
-    const result = await axios({
+    const response = await fetch("/api/v1/users/signup", {
       method: "POST",
-      url: "/api/v1/users/signup",
-      data: {
-        name: name,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-        secretForAdmin: secretForAdmin,
-        role: role,
+      headers: {
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        confirmPassword,
+        secretForAdmin,
+        role,
+      }),
     });
 
-    if (result.data.status === "success") {
+    const result = await response.json();
+
+    if (result.status === "success") {
       showAlert("success", "Signup successful!");
       window.setTimeout(() => {
         location.assign("/");
       }, 1500);
     }
+
     return {
-      tokenInfo: data,
+      tokenInfo: result.data,
       timestamp: new Date().getTime(),
     };
   } catch (err) {
     console.log(err);
-    showAlert("error", err.response.data.message);
+    showAlert("error", err.message || "An error occurred");
   }
 };
 //     const request = await fetch("http://127.0.0.1:3000/api/v1/users/signup", {
