@@ -5,7 +5,7 @@
 /* eslint-disable no-restricted-syntax */
 const jwt = require("jsonwebtoken");
 
-const crypto = requre("crypto");
+const crypto = require("crypto");
 const Party = require("../models/partyModel");
 
 const catchAsync = require("../utils/catchAsync");
