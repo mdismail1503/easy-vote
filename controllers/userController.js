@@ -51,11 +51,12 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   const image = await Jimp.read(req.file.buffer);
 
   // Resize the image
-  await image.resize(500, 500);
+  await image.resize(600, 600);
 
   // Convert to JPEG with quality 90
   await image.quality(90).writeAsync(`public/img/users/${req.file.filename}`);
-
+  req.user.photo = req.file.filename;
+  await req.user.save({ validateBeforeSave: false });
   next();
 });
 
