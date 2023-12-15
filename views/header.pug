@@ -8,7 +8,7 @@ header.header
           if user
            a.nav__el.nav__el--logout(href='/logout') LOG OUT 
            a.nav__el#spanning(href='/me')
-            img.nav__user-img(src=`/public/img/users/${user.photo}` alt='Your photo')
+            img.nav__user-img(src=`/img/users/${user.photo}` alt='Your photo')
             span=user.name.split(' ')[0].toUpperCase()
           else  
            a.nav__el#nextButton LOG IN

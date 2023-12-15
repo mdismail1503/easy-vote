@@ -56,7 +56,13 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   // Convert to JPEG with quality 90
   await image.quality(90).writeAsync(`public/img/users/${req.file.filename}`);
   req.user.photo = req.file.filename;
-  await req.user.save({ validateBeforeSave: false });
+  await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      $set: { photo: req.file.filename },
+    },
+    { new: true }
+  );
   next();
 });
 
