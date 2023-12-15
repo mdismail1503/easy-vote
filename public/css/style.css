@@ -64,6 +64,12 @@
   transition: 0.5s;
   color: #ffe382;
 }
+.header__logo img:hover,
+.footer__logo img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  transition: 0.4s;
+}
 
 .nav--user {
   margin-left: auto;
