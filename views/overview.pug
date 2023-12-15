@@ -26,14 +26,11 @@ block content
     const showAlert = (type, msg) => {
     hideAlert();
     const markup = `<div style="font-family:Lato" class="alert alert--${type} alert-modifi"><img class="alert-img" src="/img/justice.png" height="30" width="30" alt="logo"><div class="alert-msg">${msg}</div><button class="first-time-button" onclick="hideAlert()">OK</button></div>`;
-
-    document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning
-
-     
+    document.querySelector("body").insertAdjacentHTML("afterbegin", markup); // inside of the body and right at the begiinning    
     };
     if(!hasVisited){
     document.cookie='visitedBefore=true; max-age='+ 3600 * 24 * 30;
-    showAlert("success", "<strong>Hello, Welcome to EasyVote 🎉</strong><br> Tap the image to vote-it's that simple!🗳️<br>Discover more about each party in a snap.🎈<br>Just a friendly reminder:<strong>One vote per superstar!</strong><br>Thanks for choosing EasyVote.🚀");
+    showAlert("success", "<strong>Hello, Welcome to EasyVote 🎉</strong><br> Tap the image to vote-it's that simple!🗳️<br>Discover more about each party in a snap.🎈<br>Just a friendly reminder: <strong>One vote per superstar!</strong><br>Thanks! for choosing EasyVote.🚀");
     }
     document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".scroll-fade-in");
