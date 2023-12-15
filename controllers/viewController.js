@@ -181,7 +181,7 @@ exports.newPassword = catchAsync(async (req, res, next) => {
 exports.getUserList = catchAsync(async (req, res, next) => {
   const users = await User.find();
   res.status(200).render("userList", {
-    titile: "EasyVote | Users List",
+    title: "Voters List",
     users: users,
   });
 });
