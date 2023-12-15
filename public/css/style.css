@@ -550,6 +550,7 @@
   color: #fff;
   cursor: pointer;
   border-radius: 8px;
+  align-self: end;
 }
 .first-time-button:hover {
   opacity: 0.8;
