@@ -84,39 +84,39 @@ function clicked() {
   });
 }
 
-// document.getElementById("submit").addEventListener("click", function (event) {
-//   clicked();
-//   if (!validate()) {
-//     event.preventDefault(); // Prevent form submission if validation fails
-//   }
-// });
+document.getElementById("submit").addEventListener("click", function (event) {
+  clicked();
+  if (!validate()) {
+    event.preventDefault(); // Prevent form submission if validation fails
+  }
+});
 
-// document
-//   .getElementById("forgot-link")
-//   .addEventListener("click", function (event) {
-//     event.preventDefault();
-//     const email = document.getElementById("username").value;
+document
+  .getElementById("forgot-link")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    const email = document.getElementById("username").value;
 
-//     forgotPass(email);
-//   });
-// const forgotPass = async (email) => {
-//   try {
-//     const result = await axios({
-//       method: "POST",
-//       url: "/api/v1/users/forgotPassword",
-//       data: {
-//         email: email,
-//       },
-//     });
+    forgotPass(email);
+  });
+const forgotPass = async (email) => {
+  try {
+    const result = await axios({
+      method: "POST",
+      url: "/api/v1/users/forgotPassword",
+      data: {
+        email: email,
+      },
+    });
 
-//     if (result.data.status === "success") {
-//       showAlert("success", "Email sent successfully!!");
-//       window.setTimeout(() => {
-//         location.assign("/forgotPassword");
-//       }, 3000);
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     showAlert("error", err.response.data.message);
-//   }
-// };
+    if (result.data.status === "success") {
+      showAlert("success", "Email sent successfully!!");
+      window.setTimeout(() => {
+        location.assign("/forgotPassword");
+      }, 3000);
+    }
+  } catch (err) {
+    console.log(err);
+    showAlert("error", err.response.data.message);
+  }
+};
